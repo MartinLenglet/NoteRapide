@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.*;
+import dao.*;
+
 /**
  *
  * @author ESIC
@@ -58,8 +61,31 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            String log = request.getParameter("login");
+    String mdp = request.getParameter("mdp");
+    
+        try {
+           User u = UserDao.getByLoginPass(log, mdp);
+
+            if (u != null) {
+                request.getSession(true).setAttribute("memb", u);
+                // request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                response.sendRedirect("home");
+            }
+
+            else {
+                request.setAttribute("msg", "Identifiant ou mot de passe incorect");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+       
+         } catch (Exception e) {
+             PrintWriter out = response.getWriter();
+             out.println(e.getMessage());
+        }
+        
+        
     }
+ 
 
     /**
      * Handles the HTTP <code>POST</code> method.
