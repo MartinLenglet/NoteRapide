@@ -73,6 +73,10 @@ public class User {
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
+
+    public String infoUser() {
+        return "User{" + "nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", mdp=" + mdp + '}';
+    }
     
     
     
