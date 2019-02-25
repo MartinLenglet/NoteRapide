@@ -5,20 +5,24 @@
  */
 package servlet;
 
+import bean.*;
+import dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ESIC
  */
-@WebServlet(name = "Deconnexion", urlPatterns = {"/Deconnexion"})
-public class Deconnexion extends HttpServlet {
+@WebServlet(name = "AfficherMesNotes", urlPatterns = {"/AfficherMesNotes"})
+public class AfficherMesNotes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +41,10 @@ public class Deconnexion extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Deconnexion</title>");            
+            out.println("<title>Servlet AfficherMesNotes</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Deconnexion at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AfficherMesNotes at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,12 +62,31 @@ public class Deconnexion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
         
-        request.getSession().invalidate();
+        HttpSession session = request.getSession(true);
+        User u = (User) session.getAttribute("memb");
         
-        request.setAttribute("msg", "A bientôt !");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-
+        try {
+            
+            if (u != null) {
+                List<Note> notes = NoteDao.getMyNote(u);
+                request.setAttribute("ListeMesNotes", notes);
+                request.setAttribute("utilisateur", u);
+                request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+            }
+            else {
+                request.setAttribute("msg", "Petit malin hein !!!");
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+            
+            
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
+               
+        
     }
 
     /**
