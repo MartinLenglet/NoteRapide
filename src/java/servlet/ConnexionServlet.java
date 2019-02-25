@@ -85,7 +85,7 @@ public class ConnexionServlet extends HttpServlet {
             if (u != null) {
                 request.getSession(true).setAttribute("memb", u);
                 // request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-                request.getRequestDispatcher("AfficherNotes").forward(request, response);
+                response.sendRedirect("AfficherNotes");
             }
 
             else {
