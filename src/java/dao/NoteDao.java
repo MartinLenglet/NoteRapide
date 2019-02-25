@@ -55,6 +55,7 @@ public class NoteDao {
             n.setAuteur(auteur);
             n.setDestinataire(destinataire);
             
+            
             notes.add(n);
         }
         return notes;
