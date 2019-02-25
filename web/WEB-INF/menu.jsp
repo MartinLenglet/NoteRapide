@@ -13,13 +13,12 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">BlocNote Site</a>
+      <a class="navbar-brand">Site BlocNote</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Consultez les notes</a></li>
+      <li class="active"><a href="accueil.jsp">Consultez les notes</a></li>
       <li><a href="#">Créer une note</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li><a href="#">Deconnexion</a></li>
     </ul>
   </div>
 </nav>
