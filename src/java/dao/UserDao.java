@@ -19,7 +19,7 @@ public class UserDao {
         
         User result = null;
         
-        String sql = "SELECT * FROM personne WHERE mail=? AND mdp=?" ;
+        String sql = "SELECT * FROM user WHERE mail=? AND mdp=?" ;
         
         Connection connect = testBd.getConnection();
         
@@ -38,7 +38,7 @@ public class UserDao {
     
         public static void inscription(String nom, String prenom, String mail, String mdp) throws SQLException {
         
-        String sql = "INSERT INTO personne (nom, prenom, mail, mdp) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO user (nom, prenom, mail, mdp) VALUES (?,?,?,?)";
         
         Connection connect = testBd.getConnection();
         
@@ -57,7 +57,7 @@ public class UserDao {
         
         List<User> users = new ArrayList<User>();
         
-        String sql = "SELECT p.nom, p.prenom, p.mail FROM personne p";
+        String sql = "SELECT u.nom, u.prenom, u.mail FROM user u";
 
         Connection connect = testBd.getConnection();
         
