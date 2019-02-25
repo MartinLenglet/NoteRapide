@@ -75,7 +75,7 @@ public class User {
     }
 
     public String infoUser() {
-        return prenom + " " + nom + " Mail : " + mail;
+        return prenom + " " + nom + ", Mail : " + mail;
     }
     
     
