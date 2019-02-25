@@ -6,8 +6,11 @@
 package servlet;
 
 import bean.*;
+import dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,7 +63,30 @@ public class AfficherNotes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        HttpSession session = request.getSession(true);
+        User u = (User) session.getAttribute("memb");
+        
+        
+         try {
+            
+            if (u != null) {
+                List<Note> notes = UserDao.getAllNotes();
+                request.setAttribute("ListeNotes", notes);
+                request.setAttribute("utilisateur", u);
+                request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+            }
+            else {
+                request.setAttribute("msg", "Petit malin hein !!!");
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+            
+            
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
+        
     }
 
     /**
@@ -74,8 +100,7 @@ public class AfficherNotes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        User u = (User) session.getAttribute("memb");
+        processRequest(request, response);
     }
 
     /**
