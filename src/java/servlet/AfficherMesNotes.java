@@ -73,7 +73,7 @@ public class AfficherMesNotes extends HttpServlet {
                 List<Note> notes = NoteDao.getMyNote(u);
                 request.setAttribute("ListeMesNotes", notes);
                 request.setAttribute("utilisateur", u);
-                request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/mesNotes.jsp").forward(request, response);
             }
             else {
                 request.setAttribute("msg", "Petit malin hein !!!");
