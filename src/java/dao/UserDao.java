@@ -31,6 +31,7 @@ public class UserDao {
         
         if (rs.next()){
             result = new User(rs.getString("nom"), rs.getString("prenom"), rs.getString("mail")) ;
+            result.setId(rs.getInt("id"));
         }
         
         return result;
