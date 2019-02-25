@@ -34,18 +34,26 @@ public class NoteDao {
     public static List<Note> getAllNote() throws SQLException{
         List<Note> notes = new ArrayList<Note>();
         Connection connexion = testBd.getConnection();
-        String sql = "SELECT n.contenu, u1.prenom, u2.prenom FROM note n JOIN user u1 ON n.auteur_id=u1.id JOIN user u2 ON n.destinataire_id=u2.id";
+        String sql = "SELECT n.contenu, u1.prenom AS prenomAuteur, u1.nom AS nomAuteur, u1.mail AS mailAuteur,"
+                + " u2.prenom AS prenomDestinataire, u2.nom AS nomDestinataire, u2.mail AS mailDestinataire"
+                + " FROM note n JOIN user u1 ON n.auteur_id=u1.id JOIN user u2 ON n.destinataire_id=u2.id";
         Statement req = connexion.createStatement();
         ResultSet rs = req.executeQuery(sql);
         while (rs.next()){
-            User u1 = new User();
-            u1.setNom(rs.getString("nom"));
-            u1.setPrenom(rs.getString("prenom"));
-            u1.setMail(rs.getString("mail"));
+            User auteur = new User();
+            auteur.setNom(rs.getString("nomAuteur"));
+            auteur.setPrenom(rs.getString("prenomAuteur"));
+            auteur.setMail(rs.getString("mailAuteur"));
+            
+            User destinataire = new User();
+            destinataire.setNom(rs.getString("nomDestinataire"));
+            destinataire.setPrenom(rs.getString("prenomDestinataire"));
+            destinataire.setMail(rs.getString("mailDestinataire"));
+            
             Note n = new Note();
             n.setContenu(rs.getString("contenu"));
-            n.setAuteur(u1);
-            /*n.setDestinataire(rs.getString("destinataire"));*/
+            n.setAuteur(auteur);
+            n.setDestinataire(destinataire);
             
             notes.add(n);
         }
