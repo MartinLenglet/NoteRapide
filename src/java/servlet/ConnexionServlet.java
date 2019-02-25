@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dao.UserDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,13 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.*;
-import dao.*;
 
 /**
  *
  * @author ESIC
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/ConnexionServlet"})
+@WebServlet(name = "ConnexionServlet", urlPatterns = {"/Connexion"})
 public class ConnexionServlet extends HttpServlet {
 
     /**
@@ -61,7 +61,22 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String log = request.getParameter("login");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+    String log = request.getParameter("login");
     String mdp = request.getParameter("mdp");
     
         try {
@@ -84,21 +99,6 @@ public class ConnexionServlet extends HttpServlet {
         }
         
         
-    }
- 
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
