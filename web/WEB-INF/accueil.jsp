@@ -29,8 +29,8 @@
                 <c:forEach items="${ListeNotes}" var="n">
                     <tr>
                         <td>${n.contenu}</td>
-                        <td>${n.auteur}</td>
-                        <td>${n.destinataire}</td>
+                        <td>${n.auteur.infoUser()}</td>
+                        <td>${n.destinataire.infoUser()}</td>
                     </tr>
                 </c:forEach>
                 <tr></tr>
