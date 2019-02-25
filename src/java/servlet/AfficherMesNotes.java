@@ -5,23 +5,24 @@
  */
 package servlet;
 
-import dao.UserDao;
+import bean.*;
+import dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import bean.*;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ESIC
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/Connexion"})
-public class ConnexionServlet extends HttpServlet {
+@WebServlet(name = "AfficherMesNotes", urlPatterns = {"/AfficherMesNotes"})
+public class AfficherMesNotes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +41,10 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");            
+            out.println("<title>Servlet AfficherMesNotes</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AfficherMesNotes at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +62,31 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+       
+        
+        HttpSession session = request.getSession(true);
+        User u = (User) session.getAttribute("memb");
+        
+        try {
+            
+            if (u != null) {
+                List<Note> notes = NoteDao.getMyNote(u);
+                request.setAttribute("ListeMesNotes", notes);
+                request.setAttribute("utilisateur", u);
+                request.getRequestDispatcher("/WEB-INF/mesNotes.jsp").forward(request, response);
+            }
+            else {
+                request.setAttribute("msg", "Petit malin hein !!!");
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+            
+            
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
+               
+        
     }
 
     /**
@@ -75,30 +100,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-    String log = request.getParameter("login");
-    String mdp = request.getParameter("mdp");
-    
-        try {
-           User u = UserDao.getByLoginPass(log, mdp);
-
-            if (u != null) {
-                request.getSession(true).setAttribute("memb", u);
-                // request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-                response.sendRedirect("AfficherNotes");
-            }
-
-            else {
-                request.setAttribute("msg", "Identifiant ou mot de passe incorect");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-       
-         } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println(e.getMessage());
-        }
-        
-        
+        processRequest(request, response);
     }
 
     /**

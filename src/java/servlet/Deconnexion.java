@@ -61,8 +61,8 @@ public class Deconnexion extends HttpServlet {
         
         request.getSession().invalidate();
         
+        request.setAttribute("msg", "A bientôt !");
         request.getRequestDispatcher("index.jsp").forward(request, response);
-
 
     }
 

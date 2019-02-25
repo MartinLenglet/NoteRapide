@@ -1,6 +1,6 @@
 <%-- 
-    Document   : accueil
-    Created on : 25 févr. 2019, 15:39:24
+    Document   : mesNotes
+    Created on : 25 févr. 2019, 16:53:13
     Author     : ESIC
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,7 +18,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Page quand on se connecte</h1>
+        <h1>Hello World!</h1>
         <table class="table">
             <thead>
                 <th>Contenu</th>
@@ -26,10 +26,9 @@
                 <th>Destinataire</th>
             </thead>
             <tbody>
-                <c:forEach items="${ListeNotes}" var="n">
+                <c:forEach items="${ListeMesNotes}" var="n">
                     <tr>
                         <td>${n.contenu}</td>
-                        <td>${n.auteur.infoUser()}</td>
                         <td>${n.destinataire.infoUser()}</td>
                     </tr>
                 </c:forEach>

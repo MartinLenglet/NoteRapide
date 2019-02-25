@@ -61,4 +61,27 @@ public class NoteDao {
         return notes;
     }
     
+    public static List<Note> getMyNote(User utilisateur) throws SQLException{
+        List<Note> notes = new ArrayList<Note>();
+        Connection connexion = testBd.getConnection();
+        String sql = "SELECT n.contenu, u.prenom AS prenomDestinataire, u.nom AS nomDestinataire, u.mail AS mailDestinataire"
+                + " FROM note n JOIN user u ON n.destinataire_id=u.id WHERE n.auteur_id=" + utilisateur.getId();
+        Statement req = connexion.createStatement();
+        ResultSet rs = req.executeQuery(sql);
+        while (rs.next()){         
+            User destinataire = new User();
+            destinataire.setNom(rs.getString("nomDestinataire"));
+            destinataire.setPrenom(rs.getString("prenomDestinataire"));
+            destinataire.setMail(rs.getString("mailDestinataire"));
+            
+            Note n = new Note();
+            n.setContenu(rs.getString("contenu"));
+            n.setAuteur(utilisateur);
+            n.setDestinataire(destinataire);
+            
+            
+            notes.add(n);
+        }
+        return notes;
+    }
 }

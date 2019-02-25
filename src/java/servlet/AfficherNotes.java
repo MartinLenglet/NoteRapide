@@ -68,7 +68,7 @@ public class AfficherNotes extends HttpServlet {
         User u = (User) session.getAttribute("memb");
         
         
-         try {
+        try {
             
             if (u != null) {
                 List<Note> notes = NoteDao.getAllNote();
