@@ -27,7 +27,12 @@ public class NoteDao {
         PreparedStatement ordre = connexion.prepareStatement(sql);
         ordre.setString(1, note.getContenu());
         ordre.setInt(2, note.getAuteur().getId());
-        ordre.setInt(3, note.getDestinataire().getId());
+        if (note.getDestinataire().getId()== 0){
+            ordre.setString(3, null);
+        }
+        else {
+            ordre.setInt(3, note.getDestinataire().getId());
+        }
         ordre.execute();
     }
     

@@ -110,12 +110,16 @@ public class CreerNote extends HttpServlet {
        
         String d = request.getParameter("dest");
         int dest_id = Integer.parseInt(d);
-        
         User dest = new User();
-        
+
+        if(dest_id==0){
+            dest.setPrenom("Note");
+            dest.setNom("Publique");
+            note.setDestinataire(dest);
+        }else{
         dest.setId(dest_id);
-                
         note.setDestinataire(dest);
+        }
         note.setAuteur(u);
         note.setContenu(comment);
         

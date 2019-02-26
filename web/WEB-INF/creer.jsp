@@ -35,15 +35,12 @@
     </div>
 </div>
         
-                  <select class="form-control" id="dest-select" name="dest" style="width:40%">
+    <select class="form-control" id="dest-select" name="dest" style="width:40%">
           
-<c:forEach items="${utilisateur}" var="u">
-    <option value="${u.id}">${u.nom} ${u.prenom}
-            
-            </option>
-</c:forEach>
-            <option></option>
-
+    <c:forEach items="${utilisateur}" var="u">
+        <option value="${u.id}">${u.nom} ${u.prenom} </option>
+    </c:forEach>
+            <option value="0">Publique</option>
         
       </select>
  
