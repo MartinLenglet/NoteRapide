@@ -59,6 +59,7 @@ public class SupprimerNoteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+ 
     }
 
     /**
@@ -72,7 +73,12 @@ public class SupprimerNoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String idNote = request.getParameter("idNote");
+        
+        int a=1;
+        a=1+2;
+        
     }
 
     /**

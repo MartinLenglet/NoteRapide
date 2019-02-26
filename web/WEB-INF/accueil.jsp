@@ -36,15 +36,22 @@
                         <td>${n.contenu}</td>
                         <td>${n.auteur.infoUser()}</td>
                         <td>${n.destinataire.infoUser()}</td>
-                        <td><button type="button" class="btn btn-default btn-sm">
-                                 <span class="glyphicon glyphicon-pencil"></span> Modifier 
-                             </button>
+                        <td><form method="post" action="ModifierNote">
+                            <input type="hidden" name="idNote" value="${n.id}">
+                            <button type="submit" class="btn btn-default btn-sm" >
+                            <span class="glyphicon glyphicon-trash"></span> Modifier 
+                            </button>
+                             </form>
                         </td>
-                        <td><button type="button" class="btn btn-default btn-sm" action="SupprimerrNote">
-                        <span class="glyphicon glyphicon-trash"></span> Supprimer 
-                           </button>
+                        <td> <form method="post" action="SupprimerNote">
+                            <input type="hidden" name="idNote" value="${n.id}">
+                            <button type="submit" class="btn btn-default btn-sm" >
+                            <span class="glyphicon glyphicon-trash"></span> Supprimer 
+                            </button>
+                             </form>
                         </td>
                     </tr>
+
                 </c:forEach>
                     
                 <tr></tr>
