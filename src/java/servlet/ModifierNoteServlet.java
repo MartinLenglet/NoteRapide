@@ -62,7 +62,10 @@ public class ModifierNoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getParameter(""); // ancien contenu
+        String oldNote = request.getParameter("contenuNote");
+        String idNote = request.getParameter("idNote");
+        request.setAttribute("oldNote", oldNote);
+        request.setAttribute("idNote", idNote);
         request.getRequestDispatcher("/WEB-INF/modifNote.jsp").forward(request, response);
     }
 
@@ -79,20 +82,14 @@ public class ModifierNoteServlet extends HttpServlet {
             throws ServletException, IOException {
         String comment = request.getParameter("comment");
 
-
-        
-        Note note = new Note ();
+        int noteId = Integer.parseInt(request.getParameter("idNote"));
         
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("memb");
-        
-        note.setAuteur(u);
-        note.setContenu(comment);
-        
-        
+
     
         try{
-            NoteDao.modifNote(note, comment);
+            NoteDao.modifNote(noteId, comment);
             response.sendRedirect("AfficherNotes");
             //request.getRequestDispatcher("AfficherNotes").forward(request, response);
         }catch (Exception e){

@@ -24,6 +24,7 @@
         <div class="form-group" style="width:40%">
             <label>Commentaire:</label>
             <textarea class="form-control" rows="5" name="comment" method="POST">${oldNote}</textarea>
+            <input type="hidden" name="idNote" value="${idNote}">
          </div>
         <input type="submit" class="btn btn-primary btn-block" style="width:40%">
 
