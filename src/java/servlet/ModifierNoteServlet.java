@@ -10,6 +10,7 @@ import bean.User;
 import dao.NoteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,11 +63,29 @@ public class ModifierNoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String oldNote = request.getParameter("contenuNote");
-        String idNote = request.getParameter("idNote");
-        request.setAttribute("oldNote", oldNote);
-        request.setAttribute("idNote", idNote);
-        request.getRequestDispatcher("/WEB-INF/modifNote.jsp").forward(request, response);
+        HttpSession session = request.getSession(true);
+        User u = (User) session.getAttribute("memb");
+        
+        try {
+            
+            if (u != null) {
+                String oldNote = request.getParameter("contenuNote");
+                String idNote = request.getParameter("idNote");
+                request.setAttribute("oldNote", oldNote);
+                request.setAttribute("idNote", idNote);
+                request.getRequestDispatcher("/WEB-INF/modifNote.jsp").forward(request, response);
+            }
+            else {
+                request.setAttribute("msg", "Petit malin hein !!!");
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            }
+            
+            
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
+        
     }
 
     /**
