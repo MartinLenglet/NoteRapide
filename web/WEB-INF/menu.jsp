@@ -18,7 +18,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="AfficherNotes">Consultez les notes</a></li>
       <li><a href="AfficherMesNotes">Consulter mes notes</a></li>
-      <li><a href="#">Créer une note</a></li>
+      <li><a href="creernote">Creer une note</a></li>
       <li><a href="Deconnexion">Deconnexion</a></li>
     </ul>
   </div>
