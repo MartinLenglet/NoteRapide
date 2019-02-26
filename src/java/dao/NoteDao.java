@@ -103,7 +103,7 @@ public class NoteDao {
         List<Note> notes = new ArrayList<Note>();
         
         Connection connexion = testBd.getConnection();
-        String sql = "SELECT n.contenu, u.prenom AS prenomDestinataire, u.nom AS nomDestinataire, u.mail AS mailDestinataire"
+        String sql = "SELECT n.id, n.contenu, u.prenom AS prenomDestinataire, u.nom AS nomDestinataire, u.mail AS mailDestinataire"
                 + " FROM note n JOIN user u ON n.destinataire_id=u.id WHERE n.auteur_id=" + utilisateur.getId();
         Statement req = connexion.createStatement();
         ResultSet rs = req.executeQuery(sql);
@@ -114,6 +114,7 @@ public class NoteDao {
             destinataire.setMail(rs.getString("mailDestinataire"));
             
             Note n = new Note();
+            n.setId(rs.getInt("id"));
             n.setContenu(rs.getString("contenu"));
             n.setAuteur(utilisateur);
             n.setDestinataire(destinataire);
@@ -133,6 +134,7 @@ public class NoteDao {
             destinataire.setPrenom("Note");
             
             Note n = new Note();
+            n.setId(rs.getInt("id"));
             n.setContenu(rs.getString("contenu"));
             n.setAuteur(utilisateur);
             n.setDestinataire(destinataire);

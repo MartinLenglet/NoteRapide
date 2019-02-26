@@ -34,13 +34,6 @@
                     <tr>
                         <td>${n.contenu}</td>
                         <td>${n.destinataire.infoUser()}</td>
-                    <td><button type="button" class="btn btn-default btn-sm">
-                         <span class="glyphicon glyphicon-pencil"></span> Modifier 
-                         </button>
-                        </td>
-                        <td><button type="button" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-trash"></span> Supprimer 
-                        </button>
                         <td><form method="post" action="ModifierNote">
                             <input type="hidden" name="idNote" value="${n.id}">
                             <button type="submit" class="btn btn-default btn-sm" >
