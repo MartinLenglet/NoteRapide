@@ -18,7 +18,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Mes Notes</h1>
+        <h1>Mes Notes :</h1>
+        <br>
         
         <div class="container">
         <div class="row">

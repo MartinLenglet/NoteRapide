@@ -18,8 +18,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Page quand on se connecte</h1>
-        <br><br>
+        <h1>Voici toutes les notes :</h1>
+        <br>
         <div class="container">
 
         <div class="row">
@@ -36,15 +36,20 @@
                         <td>${n.contenu}</td>
                         <td>${n.auteur.infoUser()}</td>
                         <td>${n.destinataire.infoUser()}</td>
-                        <td><button type="button" class="btn btn-default btn-sm">                               
-                                <span class="glyphicon glyphicon-pencil"></span> Modifier
-                             </button>
+                        <td><form method="post" action="ModifierNote">
+                            <input type="hidden" name="idNote" value="${n.id}">
+                            <button type="submit" class="btn btn-default btn-sm" >
+                            <span class="glyphicon glyphicon-trash"></span> Modifier 
+                            </button>
+                             </form>
                         </td>
-                        <td><button type="button" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-trash"></span> Supprimer 
-                           </button>
+                        <td> <form method="post" action="SupprimerNote">
+                            <input type="hidden" name="idNote" value="${n.id}">
+                            <button type="submit" class="btn btn-default btn-sm" >
+                            <span class="glyphicon glyphicon-trash"></span> Supprimer 
+                            </button>
+                             </form>
                         </td>
-
                     </tr>
 
                 </c:forEach>
