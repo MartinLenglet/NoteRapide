@@ -3,6 +3,7 @@
     Created on : 25 févr. 2019, 16:06:23
     Author     : ESIC
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@include file="menu.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,12 +23,36 @@
 
     <form action="creernote" method="POST">
         <div class="form-group" style="width:40%">
-            <label>Commentaire:</label>
-            <textarea class="form-control" rows="5" name="comment" method="POST"></textarea>
+            <label>Note:</label>
+            <textarea class="form-control" rows="5" name="comment"></textarea>
          </div>
+        <br>
+<div class="container">
+    <div class="form-group" style="width:40%">
+      <label for="dest">Destinataire:</label>
+      
+
+    </div>
+</div>
+        
+                  <select class="form-control" id="dest-select" name="dest" style="width:40%">
+          
+<c:forEach items="${utilisateur}" var="u">
+    <option value="${u.id}">${u.nom} ${u.prenom}
+            
+            </option>
+</c:forEach>
+            <option></option>
+
+        
+      </select>
+ 
+      <br>
         <input type="submit" class="btn btn-primary btn-block" style="width:40%">
 
     </form>
+    
+
 </center>
     </body>
 </html>
