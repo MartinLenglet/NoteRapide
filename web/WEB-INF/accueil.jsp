@@ -18,8 +18,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Page quand on se connecte</h1>
-        <br><br>
+        <h1>Voici toutes les notes :</h1>
+        <br>
         <div class="container">
 
         <div class="row">
@@ -40,13 +40,11 @@
                                  <span class="glyphicon glyphicon-pencil"></span> Modifier 
                              </button>
                         </td>
-                        <td><button type="button" class="btn btn-default btn-sm">
+                        <td><button type="button" class="btn btn-default btn-sm" action="SupprimerrNote">
                         <span class="glyphicon glyphicon-trash"></span> Supprimer 
                            </button>
                         </td>
-
                     </tr>
-
                 </c:forEach>
                     
                 <tr></tr>
