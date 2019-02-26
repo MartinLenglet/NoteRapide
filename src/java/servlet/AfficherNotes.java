@@ -71,7 +71,7 @@ public class AfficherNotes extends HttpServlet {
         try {
             
             if (u != null) {
-                List<Note> notes = NoteDao.getAllNote();
+                List<Note> notes = NoteDao.getAllNote(u);
                 request.setAttribute("ListeNotes", notes);
                 request.setAttribute("utilisateur", u);
                 request.getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
