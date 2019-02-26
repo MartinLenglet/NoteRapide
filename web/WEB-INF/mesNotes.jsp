@@ -34,8 +34,9 @@
                     <tr>
                         <td>${n.contenu}</td>
                         <td>${n.destinataire.infoUser()}</td>
-                        <td><form method="post" action="ModifierNote">
+                        <td><form method="get" action="modifiernote">
                             <input type="hidden" name="idNote" value="${n.id}">
+                            <input type="hidden" name="contenuNote" value="${n.contenu}">
                             <button type="submit" class="btn btn-default btn-sm" >
                             <span class="glyphicon glyphicon-pencil"></span> Modifier 
                             </button>
