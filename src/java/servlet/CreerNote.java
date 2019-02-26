@@ -91,7 +91,8 @@ public class CreerNote extends HttpServlet {
     
         try{
             NoteDao.insert(note);
-            request.getRequestDispatcher("AfficherNotes").forward(request, response);
+            response.sendRedirect("AfficherNotes");
+            //request.getRequestDispatcher("AfficherNotes").forward(request, response);
         }catch (Exception e){
             
             PrintWriter out = response.getWriter();
