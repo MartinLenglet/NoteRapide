@@ -30,6 +30,13 @@ public class Note {
         this.auteur = auteur;
         this.destinataire = destinataire;
     }
+
+    public Note(String contenu, User auteur) {
+        this.contenu = contenu;
+        this.auteur = auteur;
+    }
+    
+    
     
     public int getId() {
         return id;
