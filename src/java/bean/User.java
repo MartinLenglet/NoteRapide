@@ -75,10 +75,12 @@ public class User {
     }
 
     public String infoUser() {
- 
+        if (this.mail==null){
+            return prenom + " " + nom;
+        }else{
             return prenom + " " + nom + ", Mail : " + mail;
-        
-        
+        }            
+         
     }
     
     
