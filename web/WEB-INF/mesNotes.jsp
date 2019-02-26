@@ -14,9 +14,21 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        
+        <script src ="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        
+        <script>
+             $(document).ready(function() {
+                 $('#deuxieme').DataTable();
+             } );
+        </script>
+ 
     </head>
+    
     <body>
         <h1>Mes Notes :</h1>
         <br>
@@ -24,10 +36,14 @@
         <div class="container">
         <div class="row">
         <div class="col-9" style="position: absolute; left: 2%; ">
-            <table class="table table-bordered table-hover">
+            <table id="deuxieme" class="table table-bordered table-hover">
             <thead>
-                <th>Contenu</th>
-                <th>Destinataire</th>
+                <tr>
+                    <th>Contenu</th>
+                    <th>Destinataire</th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 <c:forEach items="${ListeMesNotes}" var="n">
@@ -49,10 +65,8 @@
                             </button>
                              </form>
                         </td>
-                    </td>
                     </tr>
                 </c:forEach>
-                <tr></tr>
             </tbody>
         </table>
         </div>
