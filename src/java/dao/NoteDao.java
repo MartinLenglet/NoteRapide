@@ -31,10 +31,24 @@ public class NoteDao {
         ordre.execute();
     }
     
+    public static void modifNote(int noteId, String contenu) throws SQLException{
+        String sql = "UPDATE note SET contenu = '" + contenu + "' WHERE (id = " + noteId + ")";
+        Connection connexion = testBd.getConnection();
+        Statement req = connexion.createStatement();
+        req.executeUpdate(sql);
+    }
+        public static void supprimer(String idNote) throws SQLException{
+        String sql = "DELETE FROM note WHERE id="+idNote;
+        Connection connexion = testBd.getConnection();
+        PreparedStatement ordre = connexion.prepareStatement(sql);
+        ordre.execute();
+    }
+    
+    
     public static List<Note> getAllNote(User utilisateur) throws SQLException{
         List<Note> notes = new ArrayList<Note>();
         Connection connexion = testBd.getConnection();
-        String sql = "SELECT n.contenu, u1.prenom AS prenomAuteur, u1.nom AS nomAuteur, u1.mail AS mailAuteur"
+        String sql = "SELECT n.id, n.contenu, u1.prenom AS prenomAuteur, u1.nom AS nomAuteur, u1.mail AS mailAuteur"
                 + " FROM note n JOIN user u1 ON n.auteur_id=u1.id"
                 + " WHERE n.destinataire_id=" + utilisateur.getId();
         Statement req = connexion.createStatement();
@@ -47,6 +61,7 @@ public class NoteDao {
             
                 
             Note n = new Note();
+            n.setId(rs.getInt("id"));
             n.setContenu(rs.getString("contenu"));
             n.setAuteur(auteur);
             n.setDestinataire(utilisateur);
@@ -55,7 +70,7 @@ public class NoteDao {
             }
   
         connexion = testBd.getConnection();
-        sql = "SELECT n.contenu, u.prenom AS prenomAuteur, u.nom AS nomAuteur, u.mail AS mailAuteur"
+        sql = "SELECT n.id, n.contenu, u.prenom AS prenomAuteur, u.nom AS nomAuteur, u.mail AS mailAuteur"
                 + " FROM note n"
                 + " JOIN user u"
                 + " ON n.auteur_id=u.id"               
@@ -67,15 +82,13 @@ public class NoteDao {
             auteur.setNom(rs.getString("nomAuteur"));
             auteur.setPrenom(rs.getString("prenomAuteur"));
             auteur.setMail(rs.getString("mailAuteur"));
-            
-                
-            
-                
+ 
             User destinataire = new User();
             destinataire.setNom("Publique");
             destinataire.setPrenom("Note");
             
             Note n = new Note();
+            n.setId(rs.getInt("id"));
             n.setContenu(rs.getString("contenu"));
             n.setAuteur(auteur);
             n.setDestinataire(destinataire);
@@ -91,7 +104,7 @@ public class NoteDao {
         List<Note> notes = new ArrayList<Note>();
         
         Connection connexion = testBd.getConnection();
-        String sql = "SELECT n.contenu, u.prenom AS prenomDestinataire, u.nom AS nomDestinataire, u.mail AS mailDestinataire"
+        String sql = "SELECT n.id, n.contenu, u.prenom AS prenomDestinataire, u.nom AS nomDestinataire, u.mail AS mailDestinataire"
                 + " FROM note n JOIN user u ON n.destinataire_id=u.id WHERE n.auteur_id=" + utilisateur.getId();
         Statement req = connexion.createStatement();
         ResultSet rs = req.executeQuery(sql);
@@ -102,6 +115,7 @@ public class NoteDao {
             destinataire.setMail(rs.getString("mailDestinataire"));
             
             Note n = new Note();
+            n.setId(rs.getInt("id"));
             n.setContenu(rs.getString("contenu"));
             n.setAuteur(utilisateur);
             n.setDestinataire(destinataire);
@@ -121,6 +135,7 @@ public class NoteDao {
             destinataire.setPrenom("Note");
             
             Note n = new Note();
+            n.setId(rs.getInt("id"));
             n.setContenu(rs.getString("contenu"));
             n.setAuteur(utilisateur);
             n.setDestinataire(destinataire);
@@ -131,7 +146,5 @@ public class NoteDao {
         return notes;
     }
     
-    /*public static boolean deleteNote(Note note) throws SQLException{
-        
-    }*/
+
 }
