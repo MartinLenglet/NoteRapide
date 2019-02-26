@@ -41,6 +41,20 @@
                         <td><button type="button" class="btn btn-default btn-sm">
                         <span class="glyphicon glyphicon-trash"></span> Supprimer 
                         </button>
+                        <td><form method="post" action="ModifierNote">
+                            <input type="hidden" name="idNote" value="${n.id}">
+                            <button type="submit" class="btn btn-default btn-sm" >
+                            <span class="glyphicon glyphicon-pencil"></span> Modifier 
+                            </button>
+                             </form>
+                        </td>
+                        <td> <form method="post" action="SupprimerNote">
+                            <input type="hidden" name="idNote" value="${n.id}">
+                            <button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span> Supprimer
+                            </button>
+                             </form>
+                        </td>
                     </td>
                     </tr>
                 </c:forEach>

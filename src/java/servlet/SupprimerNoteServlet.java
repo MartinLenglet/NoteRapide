@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dao.NoteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -73,11 +74,17 @@ public class SupprimerNoteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String idNote = request.getParameter("idNote");
         
-        int a=1;
-        a=1+2;
+        try{
+            NoteDao.supprimer(idNote);
+            response.sendRedirect("AfficherNotes");
+            //request.getRequestDispatcher("AfficherNotes").forward(request, response);
+        }catch (Exception e){
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
         
     }
 

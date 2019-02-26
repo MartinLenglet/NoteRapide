@@ -30,6 +30,14 @@ public class NoteDao {
         ordre.execute();
     }
     
+        public static void supprimer(String idNote) throws SQLException{
+        String sql = "DELETE FROM note WHERE id="+idNote;
+        Connection connexion = testBd.getConnection();
+        PreparedStatement ordre = connexion.prepareStatement(sql);
+        ordre.execute();
+    }
+    
+    
     public static List<Note> getAllNote(User utilisateur) throws SQLException{
         List<Note> notes = new ArrayList<Note>();
         Connection connexion = testBd.getConnection();
