@@ -37,6 +37,9 @@
                         <td>${n.auteur.infoUser()}</td>
                         <td>${n.destinataire.infoUser()}</td>
                     </tr>
+            <button type="button" class="btn btn-default btn-sm" style="position: relative;">
+                <span class="glyphicon glyphicon-trash"></span> Supprimer 
+            </button>
                 </c:forEach>
                 <tr></tr>
             </tbody>
