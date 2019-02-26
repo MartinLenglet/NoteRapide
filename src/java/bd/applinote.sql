@@ -48,10 +48,12 @@ CREATE TABLE IF NOT EXISTS `note` (
 INSERT INTO `note` (`id`, `contenu`, `auteur_id`, `destinataire_id`) VALUES
 (1, 'Je te kiff', 1, 2),
 (2, 'Kebab ou indien ?', 2, 3),
-(3, 'Tu me compiles ça sur dreamweaver', 3, 1),
-(4, 'Petite biere jeudi ?', 2, 1),
-(5, 'Maitre corbeau sur un arbre perche', 3, 1),
-(6, 'ca se dit fullstack et ca sait mm pas integrer tomcat', 1, 2);
+(3, 'Tu me compiles ça sur dreamweaver', 3, 1);
+
+INSERT INTO `note` (`id`, `contenu`, `auteur_id`) VALUES
+(4, 'Petite biere jeudi ?', 2),
+(5, 'Maitre corbeau sur un arbre perche', 3),
+(6, 'ca se dit fullstack et ca sait mm pas integrer tomcat', 1);
 
 -- --------------------------------------------------------
 
