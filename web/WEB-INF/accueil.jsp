@@ -24,7 +24,7 @@
 
         <div class="row">
         <div class="col-9" style="position: absolute; left: 2%; ">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-hover">
             <thead>
                 <th>Contenu</th>
                 <th>Auteur</th>
@@ -36,11 +36,19 @@
                         <td>${n.contenu}</td>
                         <td>${n.auteur.infoUser()}</td>
                         <td>${n.destinataire.infoUser()}</td>
+                        <td><button type="button" class="btn btn-default btn-sm">
+                                 <span class="glyphicon glyphicon-pencil"></span> Modifier 
+                             </button>
+                        </td>
+                        <td><button type="button" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span> Supprimer 
+                           </button>
+                        </td>
+
                     </tr>
-            <button type="button" class="btn btn-default btn-sm" style="position: relative;">
-                <span class="glyphicon glyphicon-trash"></span> Supprimer 
-            </button>
+
                 </c:forEach>
+                    
                 <tr></tr>
             </tbody>
         </table> 
