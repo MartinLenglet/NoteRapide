@@ -19,7 +19,11 @@
     </head>
     <body>
         <h1>Mes Notes</h1>
-        <table class="table">
+        
+        <div class="container">
+        <div class="row">
+        <div class="col-9" style="position: absolute; left: 2%; ">
+            <table class="table table-bordered table-hover">
             <thead>
                 <th>Contenu</th>
                 <th>Destinataire</th>
@@ -29,10 +33,20 @@
                     <tr>
                         <td>${n.contenu}</td>
                         <td>${n.destinataire.infoUser()}</td>
+                    <td><button type="button" class="btn btn-default btn-sm">
+                         <span class="glyphicon glyphicon-pencil"></span> Modifier 
+                         </button>
+                        </td>
+                        <td><button type="button" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span> Supprimer 
+                        </button>
+                    </td>
                     </tr>
                 </c:forEach>
                 <tr></tr>
             </tbody>
         </table>
+        </div>
+        </div>
     </body>
 </html>

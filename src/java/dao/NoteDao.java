@@ -22,12 +22,11 @@ import java.util.List;
 public class NoteDao {
     
     public static void insert(Note note) throws SQLException{
-        String sql = "INSERT INTO note(contenu, auteur_id, destinataire_id) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO note(contenu, auteur_id) VALUES(?, ?)";
         Connection connexion = testBd.getConnection();
         PreparedStatement ordre = connexion.prepareStatement(sql);
         ordre.setString(1, note.getContenu());
         ordre.setInt(2, note.getAuteur().getId());
-        ordre.setInt(3, note.getDestinataire().getId());
         ordre.execute();
     }
     
