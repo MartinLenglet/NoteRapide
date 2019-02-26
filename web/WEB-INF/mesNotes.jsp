@@ -19,7 +19,11 @@
     </head>
     <body>
         <h1>Mes Notes</h1>
-        <table class="table">
+        
+        <div class="container">
+        <div class="row">
+        <div class="col-9" style="position: absolute; left: 2%; ">
+            <table class="table table-bordered table-striped">
             <thead>
                 <th>Contenu</th>
                 <th>Destinataire</th>
@@ -34,5 +38,7 @@
                 <tr></tr>
             </tbody>
         </table>
+        </div>
+        </div>
     </body>
 </html>
