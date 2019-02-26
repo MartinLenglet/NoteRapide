@@ -9,6 +9,13 @@ import bean.User;
 import dao.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import dao.UserDao;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,7 +68,18 @@ public class CreerNote extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/creer.jsp").forward(request, response);
+        
+          try{
+              
+         List<User> membres = UserDao.getAllMember();
+            request.setAttribute("utilisateur",membres);
+            request.getRequestDispatcher("/WEB-INF/creer.jsp").forward(request, response);
+          }
+          catch(Exception e){
+              PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+          }
+    
     }
 
     /**
@@ -72,6 +90,9 @@ public class CreerNote extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -83,13 +104,24 @@ public class CreerNote extends HttpServlet {
         
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("memb");
+
+  
+        //note.setDestinataire(d);
+       
+        String d = request.getParameter("dest");
+        int dest_id = Integer.parseInt(d);
         
+        User dest = new User();
+        
+        dest.setId(dest_id);
+                
+        note.setDestinataire(dest);
         note.setAuteur(u);
         note.setContenu(comment);
         
         
-    
         try{
+
             NoteDao.insert(note);
             response.sendRedirect("AfficherNotes");
             //request.getRequestDispatcher("AfficherNotes").forward(request, response);

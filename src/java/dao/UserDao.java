@@ -58,7 +58,7 @@ public class UserDao {
         
         List<User> users = new ArrayList<User>();
         
-        String sql = "SELECT u.nom, u.prenom, u.mail FROM user u";
+        String sql = "SELECT u.nom, u.prenom, u.mail, u.id FROM user u";
 
         Connection connect = testBd.getConnection();
         
@@ -70,6 +70,7 @@ public class UserDao {
             u.setNom(rs.getString("nom"));
             u.setPrenom(rs.getString("prenom"));
             u.setMail(rs.getString("mail"));
+            u.setId(rs.getInt("id"));
             
             users.add(u);
         }
