@@ -36,8 +36,8 @@
                         <td>${n.contenu}</td>
                         <td>${n.auteur.infoUser()}</td>
                         <td>${n.destinataire.infoUser()}</td>
-                        <td><button type="button" class="btn btn-default btn-sm">
-                                 <span class="glyphicon glyphicon-pencil"></span> Modifier 
+                        <td><button type="button" class="btn btn-default btn-sm">                               
+                                <span class="glyphicon glyphicon-pencil"></span> Modifier
                              </button>
                         </td>
                         <td><button type="button" class="btn btn-default btn-sm">

@@ -71,6 +71,7 @@ public class Note {
     }
 
     public String infoNote() {
+        
         return "Note{" + "id=" + id + ", contenu=" + contenu + ", auteur=" + auteur + ", destinataire=" + destinataire + '}';
     }
     

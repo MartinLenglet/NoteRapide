@@ -30,6 +30,13 @@ public class NoteDao {
         ordre.execute();
     }
     
+    public static void modifNote(Note note, String contenu) throws SQLException{
+        String sql = "UPDATE note SET contenu = " + contenu + " WHERE (id = " + note.getId() + ")";
+        Connection connexion = testBd.getConnection();
+        Statement req = connexion.createStatement();
+        ResultSet rs = req.executeQuery(sql);
+    }
+    
     public static List<Note> getAllNote(User utilisateur) throws SQLException{
         List<Note> notes = new ArrayList<Note>();
         Connection connexion = testBd.getConnection();
@@ -130,7 +137,5 @@ public class NoteDao {
         return notes;
     }
     
-    /*public static boolean deleteNote(Note note) throws SQLException{
-        
-    }*/
+
 }
