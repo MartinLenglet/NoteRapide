@@ -18,11 +18,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Mes Notes</h1>
         <table class="table">
             <thead>
                 <th>Contenu</th>
-                <th>Auteur</th>
                 <th>Destinataire</th>
             </thead>
             <tbody>
